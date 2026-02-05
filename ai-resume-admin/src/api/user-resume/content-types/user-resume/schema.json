@@ -57,6 +57,11 @@
     },
     "themeColor": {
       "type": "string"
+    },
+    "Experience": {
+      "type": "component",
+      "component": "experience.experience",
+      "repeatable": true
     }
   }
 }
