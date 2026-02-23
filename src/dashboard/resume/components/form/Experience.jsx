@@ -75,7 +75,7 @@ const onSave=(e)=>{
         console.log(resp.data.data);
         setEnableNext(true);
         setLoader(false);
-        toast("Education updated")
+        toast("Experience is updated")
         }, (error)=>{
             setLoader(false)
         })

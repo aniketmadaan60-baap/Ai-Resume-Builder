@@ -17,32 +17,32 @@ function Summery({setEnableNext}) {
     const ai = new GoogleGenAI({apiKey: import.meta.env.VITE_GOOGLE_AI_API_KEY});
     const PROMPT = prompt.replace("jobTitle", resumeInfo?.jobTitle)
     
-async function main() {
-    
-  const response = await ai.models.generateContent({
-    model: "gemini-3-flash-preview",
-    contents: PROMPT,
-    config: {
-      responseMimeType: "application/json",
-      responseSchema: {
-          type: Type.ARRAY,
-          items: {
-            type: Type.OBJECT,
-            properties: {
-              experience_level: {
-                type: Type.STRING,
-                description: 'experience Level',
-              },
-              summary: {
-                type: Type.STRING,
-                description: 'summary',
+    async function main() {
+        
+      const response = await ai.models.generateContent({
+        model: "gemini-3-flash-preview",
+        contents: PROMPT,
+        config: {
+          responseMimeType: "application/json",
+          responseSchema: {
+              type: Type.ARRAY,
+              items: {
+                type: Type.OBJECT,
+                properties: {
+                  experience_level: {
+                    type: Type.STRING,
+                    description: 'experience Level',
+                  },
+                  summary: {
+                    type: Type.STRING,
+                    description: 'summary',
+                  },
+                },
+                propertyOrdering: ["experience_level", "summary"],
               },
             },
-            propertyOrdering: ["experience_level", "summary"],
-          },
         },
-    },
-  });
+      });
 
   // response.text is guaranteed to be valid JSON matching the schema
   console.log(response.text);
@@ -50,7 +50,6 @@ async function main() {
   console.log(promptOutput)
   
 }
-
 
     useEffect(()=>{
         summery&&setResumeInfo({
@@ -85,8 +84,11 @@ async function main() {
             <div className='flex justify-between item-center' >
                 <label>Add Summery</label>
                 <Button onClick={()=> {
-                    console.log("Ai button clicked")
-                main()}} type="button" variant="outline" size='sm' className="border-primary text-primary"><Brain className='h-4 w-4 '/>Generate from AI</Button>
+                        console.log("Ai button clicked")
+                        main()
+                      }
+                    }
+                    type="button" variant="outline" size='sm' className="border-primary text-primary"><Brain className='h-4 w-4 '/>Generate from AI</Button>
             </div>
             <Textarea className={"mt-5"} required defaultValue={resumeInfo?.summery}
                 onChange={(e)=> setSummery(e.target.value)}

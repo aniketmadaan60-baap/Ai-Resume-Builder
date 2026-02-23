@@ -41,7 +41,7 @@ function PersonalDetail({resumeInfo, setResumeInfo, setEnableNext}) {
       [name] : value
     })
   }
-  {if(resumeId) console.log("Madaan",resumeId)}
+  
   
   const onSave = (e)=>{
     setEnableNext(false)
